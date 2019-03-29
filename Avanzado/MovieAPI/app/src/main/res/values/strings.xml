@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MovieAPI</string>
+    <string name="hint_pelicula">Ingresar el nombre de la película</string>
+    <string name="bt_buscar">Buscar película</string>
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Agenda</string>
+
+    <string name="dni">DNI</string>
+    <string name="pasaporte">Pasaporte</string>
+    <string name="ce">CE</string>
+
+    <string-array name="tipos_documentos">
+        <item>@string/dni</item>
+        <item>@string/pasaporte</item>
+        <item>@string/ce</item>
+    </string-array>
+</resources>

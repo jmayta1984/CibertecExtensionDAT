@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dni">ID</string>
+    <string name="pasaporte">Passport</string>
+    <string name="ce">Immigration Card</string>
+</resources>

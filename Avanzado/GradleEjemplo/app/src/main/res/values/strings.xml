@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name_demo">Gradle Ejemplo Demo</string>
+
+    <string name="app_name_full">Gradle Ejemplo Full</string>
+    <string name="hello">Hola full</string>
+
+</resources>
