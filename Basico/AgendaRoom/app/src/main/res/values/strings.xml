@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AgendaRoom</string>
+    <string name="hint_name">Ingrese nombre</string>
+    <string name="hint_telephone">Ingrese número teléfonico</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_add">Agregar</string>
+    <string name="action_delete">Eliminar</string>
+</resources>
