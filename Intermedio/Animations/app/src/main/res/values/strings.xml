@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Animations</string>
+    <string name="bt_zoom">Zoom</string>
+    <string name="bt_clock">Clockwise</string>
+    <string name="bt_fade">Fade</string>
+    <string name="bt_move">Move</string>
+    <string name="bt_transittion">Transition</string>
+</resources>

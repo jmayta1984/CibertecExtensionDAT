@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MovieDBAPI</string>
+    <string name="search">Buscar</string>
+    <string name="name">Nombre</string>
+    <string name="height">Altura</string>
+    <string name="weight">Peso</string>
+    <string name="overview">Reseña</string>
+    <string name="date">Lanzamiento</string>
+
+</resources>
