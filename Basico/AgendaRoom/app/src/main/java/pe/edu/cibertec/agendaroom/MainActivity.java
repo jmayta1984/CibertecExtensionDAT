@@ -1,6 +1,7 @@
 package pe.edu.cibertec.agendaroom;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,10 +32,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadItems() {
-        items = AppDatabase.getInstance(this).contactDao().getAll();
-        adapter = new ContactAdapter(items);
-        rvContact.setAdapter(adapter);
-        rvContact.setLayoutManager(new LinearLayoutManager(this));
+
+        new GetAllContactsTask();
+
     }
 
     @Override
@@ -48,5 +48,23 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ContactActivity.class);
         startActivity(intent);
         return true;
+    }
+
+    private class GetAllContactsTask extends AsyncTask<Void, Void, List<Contact>> {
+        @Override
+        protected List<Contact> doInBackground(Void... voids) {
+            return AppDatabase.getInstance(MainActivity.this).contactDao().getAll();
+        }
+
+
+        @Override
+        protected void onPostExecute(List<Contact> contacts) {
+            super.onPostExecute(contacts);
+            items = contacts;
+
+            adapter = new ContactAdapter(items);
+            rvContact.setAdapter(adapter);
+            rvContact.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        }
     }
 }
