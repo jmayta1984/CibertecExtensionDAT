@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadItems() {
 
-        new GetAllContactsTask();
+        new GetAllContactsTask().execute();
 
     }
 

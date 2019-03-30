@@ -1,5 +1,6 @@
 package pe.edu.cibertec.agendaroom;
 
+import android.os.AsyncTask;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,19 +53,42 @@ public class ContactActivity extends AppCompatActivity {
                 if (contact != null) {
                     contact.setName(name);
                     contact.setTelephone(telephone);
-                    AppDatabase.getInstance(this).contactDao().update(contact);
-
+                    new UpdateContactTask().execute(contact);
                 } else {
                     contact = new Contact(name, telephone);
-                    AppDatabase.getInstance(this).contactDao().insert(contact);
+                    new InsertContactTask().execute(contact);
                 }
                 break;
             case R.id.optionDelete:
-                AppDatabase.getInstance(this).contactDao().delete(contact);
+                new DeleteContactTask().execute(contact);
                 break;
         }
 
         finish();
         return true;
+    }
+
+    private class UpdateContactTask extends AsyncTask<Contact, Void, Void> {
+        @Override
+        protected Void doInBackground(Contact... contacts) {
+            AppDatabase.getInstance(ContactActivity.this).contactDao().update(contacts);
+            return null;
+        }
+    }
+
+    private class InsertContactTask extends AsyncTask<Contact, Void, Void> {
+        @Override
+        protected Void doInBackground(Contact... contacts) {
+            AppDatabase.getInstance(ContactActivity.this).contactDao().insert(contacts);
+            return null;
+        }
+    }
+
+    private class DeleteContactTask extends AsyncTask<Contact, Void, Void> {
+        @Override
+        protected Void doInBackground(Contact... contacts) {
+            AppDatabase.getInstance(ContactActivity.this).contactDao().delete(contacts);
+            return null;
+        }
     }
 }
