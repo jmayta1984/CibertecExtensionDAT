@@ -23,28 +23,17 @@ class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobPrototype> {
     public JobPrototype onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.prototype_job,viewGroup,false);
+                .inflate(R.layout.prototype_job, viewGroup, false);
 
 
         return new JobPrototype(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull JobPrototype jobPrototype, final int position) {
+    public void onBindViewHolder(@NonNull JobPrototype jobPrototype, int position) {
 
         jobPrototype.tvName.setText(items.get(position).getTitle());
         jobPrototype.tvCompany.setText(items.get(position).getCompany());
-
-        jobPrototype.btFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Job job = new Job();
-                job.setTitle(items.get(position).getTitle());
-                job.setCompany(items.get(position).getCompany());
-
-                AppDatabase.getInstance(v.getContext()).jobDao().insert(job);
-            }
-        });
 
 
     }
@@ -64,8 +53,16 @@ class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobPrototype> {
 
             tvName = itemView.findViewById(R.id.tvName);
             tvCompany = itemView.findViewById(R.id.tvCompany);
-
             btFavorite = itemView.findViewById(R.id.btFavorite);
+
+            btFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    AppDatabase.getInstance(v.getContext())
+                            .jobDao().insert(items.get(getAdapterPosition()));
+                }
+            });
         }
     }
 }

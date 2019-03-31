@@ -7,35 +7,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoritePrototype> {
 
     List<Job> items;
+
+    public FavoriteAdapter(List<Job> items) {
+        this.items = items;
+    }
+
     @NonNull
     @Override
     public FavoritePrototype onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.prototype_favorite,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.prototype_favorite, viewGroup, false);
 
         return new FavoritePrototype(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavoritePrototype favoritePrototype, final int position) {
+    public void onBindViewHolder(@NonNull final FavoritePrototype favoritePrototype, int position) {
         favoritePrototype.tvCompany.setText(items.get(position).getCompany());
         favoritePrototype.tvTitle.setText(items.get(position).getTitle());
 
-        favoritePrototype.btDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Job job = new Job();
-
-                job.setId(items.get(position).getId());
-
-                AppDatabase.getInstance(v.getContext()).jobDao().delete(job);
-            }
-        });
 
     }
 
@@ -55,6 +51,19 @@ class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteProto
             tvCompany = itemView.findViewById(R.id.tvCompany);
 
             btDelete = itemView.findViewById(R.id.btDelete);
+
+            btDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppDatabase.getInstance(v.getContext()).jobDao()
+                            .delete(items.get(getAdapterPosition()));
+                    items.remove(items.get(getAdapterPosition()));
+                    notifyItemRemoved(getAdapterPosition());
+                    notifyItemRangeChanged(getAdapterPosition(), items.size());
+
+
+                }
+            });
 
         }
     }
