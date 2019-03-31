@@ -43,7 +43,7 @@ public class NotifcationBroadcastReceiver extends BroadcastReceiver {
 
         } else {
             if (action == "android.intent.action.AIRPLANE_MODE") {
-                //Toast.makeText(context, "Cambio en modo avión", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Cambio en modo avión", Toast.LENGTH_SHORT).show();
 
             }
         }
