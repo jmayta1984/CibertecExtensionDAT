@@ -36,5 +36,12 @@ public interface ContactDao {
     @Delete
     void delete(Contact... contacts);
 
+    @Query("delete from contact where name=:id")
+    int deleteByIdCursor(long id);
 
+    @Query("delete from contact")
+    int deleteAllCursor();
+
+    @Insert
+    long insertCP(Contact contact);
 }

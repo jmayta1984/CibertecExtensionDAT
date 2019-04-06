@@ -24,7 +24,6 @@ public class ContactProvider extends ContentProvider {
 
     }
 
-
     @Override
     public boolean onCreate() {
         return true;
@@ -61,11 +60,27 @@ public class ContactProvider extends ContentProvider {
 
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-        return null;
+        Contact contact = new Contact();
+
+        String name = values.getAsString("name");
+        String telephone = values.getAsString("telephone");
+        contact.setName(name);
+        contact.setTelephone(telephone);
+
+        ContactDao contactDao = AppDatabase.getInstance(getContext()).contactDao();
+        Long id = contactDao.insertCP(contact);
+        return ContentUris.withAppendedId(uri, id);
     }
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
+        ContactDao contactDao = AppDatabase.getInstance(getContext()).contactDao();
+        switch (uriMatcher.match(uri)) {
+            case CONTACTS:
+                return contactDao.deleteAllCursor();
+            case CONTACT:
+                return contactDao.deleteByIdCursor(ContentUris.parseId(uri));
+        }
         return 0;
     }
 

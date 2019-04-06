@@ -35,7 +35,7 @@ class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactPrototyp
 
     @Override
     public void onBindViewHolder(@NonNull ContactPrototype contactPrototype, final int position) {
-        contactPrototype.tvName.setText(items.get(position).getName());
+        contactPrototype.tvName.setText(items.get(position).getName() +"\n"+ items.get(position).getId() ) ;
 
         contactPrototype.cvContact.setOnClickListener(new View.OnClickListener() {
             @Override
