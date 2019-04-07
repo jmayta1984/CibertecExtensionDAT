@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_search"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/option_search" />
+    <item
+        android:id="@+id/action_favorites"
+        android:enabled="true"
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/option_favorites" />
+</menu>

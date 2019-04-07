@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Movies</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="option_search">Buscar</string>
+    <string name="option_favorites">Favoritos</string>
+    <string name="hint_search_movie">Ingresar el nombre de la película</string>
+    <string name="bt_delete_description">Opción para eliminar una película registrada como favorita</string>
+    <string name="bt_search_description">Opción para registrar una película como favorita</string>
+</resources>
